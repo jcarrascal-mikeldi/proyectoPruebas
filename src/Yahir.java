@@ -2,7 +2,7 @@ public class Yahir {
 
     // Generador automático de archivos de 50MB
     private static final int TOTAL_FILES = 1_000_000;
-    private static final int TARGET_SIZE_MB = 50;
+    private static final int TARGET_SIZE_MB = 500;
     private static final int TARGET_SIZE_BYTES = TARGET_SIZE_MB * 1024 * 1024;
 
     public static void generateFiles() {

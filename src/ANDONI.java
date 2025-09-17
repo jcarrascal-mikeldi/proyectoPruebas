@@ -21,6 +21,8 @@ public class ANDONI extends javax.swing.JFrame {
         getContentPane().setBackground(java.awt.Color.BLACK);
         bdatos.setBackground(java.awt.Color.DARK_GRAY);
         bdatos.setForeground(java.awt.Color.WHITE);
+        String prueba = "A ver si se actualiza esta bullshit";
+        String otra_prueba = "Para actualizar desde el navegador";
     }
 
     /**

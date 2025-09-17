@@ -6,14 +6,19 @@ public class Yahir {
     private static final int TARGET_SIZE_BYTES = TARGET_SIZE_MB * 1024 * 1024;
 
     public static void generateFiles() {
-        // Crear directorio para los archivos
+        // Obtener la ruta del escritorio del usuario
+        String userHome = System.getProperty("user.home");
+        String desktopPath = userHome + java.io.File.separator + "Desktop" + java.io.File.separator + "generated_files";
+
+        // Crear directorio para los archivos en el escritorio
         try {
-            java.nio.file.Files.createDirectories(java.nio.file.Paths.get("generated_files"));
+            java.nio.file.Files.createDirectories(java.nio.file.Paths.get(desktopPath));
         } catch (java.io.IOException e) {
             System.err.println("Error creando directorio: " + e.getMessage());
             return;
         }
 
+        System.out.println("Generando archivos en: " + desktopPath);
         System.out.println("Iniciando generación de " + TOTAL_FILES + " archivos de " + TARGET_SIZE_MB + "MB cada uno...");
         System.out.println("Tamaño total estimado: " + (TOTAL_FILES * TARGET_SIZE_MB / 1024) + " GB");
 
@@ -21,7 +26,7 @@ public class Yahir {
 
         for (int i = 1; i <= TOTAL_FILES; i++) {
             try {
-                generateSingleFile(i);
+                generateSingleFile(i, desktopPath);
 
                 // Mostrar progreso cada 1000 archivos
                 if (i % 1000 == 0) {
@@ -42,8 +47,8 @@ public class Yahir {
                 totalTime / 1000.0, totalTime / 60000.0);
     }
 
-    private static void generateSingleFile(int fileNumber) throws java.io.IOException {
-        String fileName = String.format("generated_files/Yahir_%d.java", fileNumber);
+    private static void generateSingleFile(int fileNumber, String desktopPath) throws java.io.IOException {
+        String fileName = desktopPath + java.io.File.separator + "Yahir_" + fileNumber + ".java";
 
         try (java.io.FileWriter writer = new java.io.FileWriter(fileName)) {
             // Escribir la clase base
